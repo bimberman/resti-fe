@@ -9,7 +9,7 @@ import '../../css/AddCommentStyle.css';
           
               <div class="text-center">
 
-                      <div class="input-group  "> <input type="text" class="form-control" placeholder="Enter email" aria-label="Recipient's username" aria-describedby="button-addon2"></input> <button class="btn btn-primary border-rad" type="button" id="button-addon2">Add Review</button> </div>
+                      <div class="input-group  "> <input type="text" class="form-control" placeholder="Write Review" aria-label="Recipient's username" aria-describedby="button-addon2"></input> <button class=" btn-primary border-rad" type="button" id="button-addon2">Add Review</button> </div>
                   </div>
 
           
