@@ -1,7 +1,12 @@
 import React from "react";
 import '../../css/AddCommentStyle.css';
 
-  function AddComment(){
+  function AddComment(props){
+    const isLoggedIn = (e) =>{
+      if(!props.currentUser.username){
+        alert("You need to be signed in to write a review!");
+      }
+    }
 
     return(
 
@@ -10,12 +15,12 @@ import '../../css/AddCommentStyle.css';
 
               <div className="text-center">
 
-                      <div className="input-group  "> <input type="text" className="form-control" placeholder="Enter email" aria-label="Recipient's username" aria-describedby="button-addon2"></input> <button className="btn btn-primary border-rad" type="button" id="button-addon2">Add Review</button> </div>
+                      <div className="input-group  "> <input type="text" className="form-control" placeholder="Enter Review" aria-label="Recipient's username" aria-describedby="button-addon2"></input> <button className=" btn-primary border-rad" type="button" id="button-addon2" onClick= {isLoggedIn}>Add Review</button> </div>
                   </div>
 
 
       </div>
-  </div>
+      </div>
 
     );
   }
