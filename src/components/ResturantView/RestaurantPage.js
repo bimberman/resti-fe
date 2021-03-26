@@ -4,14 +4,13 @@ import RestaurantBody from './RestaurantBody';
 import { useState } from 'react';
 
 
-function RestaurantPage({data}){
-    const [obj] = useState(data);
+function RestaurantPage(props){
 
     return(
         <div>
             <NavBar />
             <br></br>
-            <RestaurantBody obj = {obj}/>
+            <RestaurantBody obj = {props.data} currentUser = {props.currentUser}/>
             <br></br>
             <br></br>
             <br></br>

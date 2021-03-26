@@ -48,7 +48,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path='/'><HomePage  data= {data}/></Route>
-          <Route exact path='/Restaurant'><RestaurantPage data= {data}/></Route>
+          <Route exact path='/Restaurant'><RestaurantPage data= {data} currentUser = {currentUser}/></Route>
           <Route exact path='/Login'><SignInPage setUsers={setUsers} users={users} setCurrentUser={setCurrentUser}/></Route>
         </Switch>
       </BrowserRouter>
