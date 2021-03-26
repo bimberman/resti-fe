@@ -113,9 +113,23 @@ function App() {
   )
 
   const searchRestaurants = (str) => {
-    setFindRestaurants(restaurants.filter(restaurant=> {
-      return str === restaurant.title;
-    }))
+    if (str) {
+      setFindRestaurants( restaurants.filter( restaurant=> str === restaurant.title ))
+    }
+
+    if(!str.length){
+      setFindRestaurants([])
+    }
+  }
+
+  const partialSearchRestaurants = (str) => {
+    if(str){
+      setFindRestaurants(restaurants.filter(restaurant => restaurant.title.toLowerCase().includes(str.toLowerCase()) ))
+    }
+
+    if (!str.length) {
+      setFindRestaurants([])
+    }
   }
 
   return (
@@ -126,6 +140,7 @@ function App() {
             <HomePage
               restaurants={findRestaurants.length ? findRestaurants : restaurants}
               searchRestaurants={searchRestaurants}
+              partialSearchRestaurants={partialSearchRestaurants}
               setCurrentRestaurant={setCurrentRestaurant}
               currentUser={currentUser}
               idCounter={idCounter}

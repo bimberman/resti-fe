@@ -20,7 +20,9 @@ function HomePage(props) {
   return (
     <div>
       <NavBar currentUser={props.currentUser}/>
-      <Header searchRestaurants={props.searchRestaurants}/>
+      <Header
+        searchRestaurants={props.searchRestaurants}
+        partialSearchRestaurants={props.partialSearchRestaurants}/>
       <div className = "container">
         <div className = "row justify-content-center">
           {restaurants.map(restaurant => {
