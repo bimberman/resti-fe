@@ -8,6 +8,7 @@ function RestaurantBody(props){
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
+        setReviews(()=>[]);
         props.reviews.forEach(review => {
             if (review.restaurantId === props.currentRestaurant.id) {
                 setReviews(prevState => ([

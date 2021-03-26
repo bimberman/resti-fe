@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react';
 function HomePage(props) {
   const [restaurants, setRestaurants] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
+    setRestaurants(()=>[]);
       props.restaurants.forEach(restaurant=>{
         setRestaurants(prevState=>([
           ...prevState,
@@ -19,19 +20,18 @@ function HomePage(props) {
   return (
     <div>
       <NavBar currentUser={props.currentUser}/>
-      <Header/>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <Header searchRestaurants={props.searchRestaurants}/>
       <div className = "container">
         <div className = "row justify-content-center">
           {restaurants.map(restaurant => {
-              return <Card
-                key={restaurant.id}
-                restaurant={restaurant}
-                setCurrentRestaurant={props.setCurrentRestaurant}
-              />
+              return (
+                <Card
+                  key={restaurant.id}
+                  setFindRestaurants={props.setFindRestaurants}
+                  restaurant={restaurant}
+                  setCurrentRestaurant={props.setCurrentRestaurant}
+                />
+              )
           })}
         </div>
       </div>

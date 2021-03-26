@@ -67,8 +67,32 @@ function App() {
         location: "1234 copycat lane",
         phoneNumber: "0987654321",
       },
+      {
+        id: 3,
+        title: "Burger 2",
+        rating: 4.5,
+        description: "A classic burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
+        numOfReviews: 1,
+        imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
+        foodGenre: "American, Restaurant",
+        location: "1234 dixie lane",
+        phoneNumber: "1234567890",
+      },
+      {
+        id: 4,
+        title: "Happy",
+        rating: 5,
+        description: "A different burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
+        numOfReviews: 0,
+        imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
+        foodGenre: "American, Restaurant",
+        location: "1234 copycat lane",
+        phoneNumber: "0987654321",
+      },
     ]
   )
+
+  const [findRestaurants, setFindRestaurants] = useState([])
 
   const [currentRestaurant, setCurrentRestaurant] = useState({})
 
@@ -88,17 +112,25 @@ function App() {
     ]
   )
 
+  const searchRestaurants = (str) => {
+    setFindRestaurants(restaurants.filter(restaurant=> {
+      return str === restaurant.title;
+    }))
+  }
+
   return (
     <div>
       <BrowserRouter>
         <Switch>
           <Route exact path='/'>
             <HomePage
-              restaurants={restaurants}
+              restaurants={findRestaurants.length ? findRestaurants : restaurants}
+              searchRestaurants={searchRestaurants}
               setCurrentRestaurant={setCurrentRestaurant}
               currentUser={currentUser}
               idCounter={idCounter}
-              setIdCounter={setIdCounter}/>
+              setIdCounter={setIdCounter}
+              setFindRestaurants={setFindRestaurants}/>
           </Route>
           <Route exact path='/Restaurant'>
             <RestaurantPage
