@@ -1,38 +1,73 @@
-import React from 'react';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../../css/SignInStyle.css';
-function SignIn(){
-    return(
-            <div class = "container">
-            <div class="row">
-            <div class="col-md-6 mx-auto p-0">
-                <div class="card">
-                    <div class="login-box">
-                        <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked></input><label for="tab-1" class="tab">Login</label><input id="tab-2" type="radio" name="tab" class="sign-up"></input><label for="tab-2" class="tab">Sign Up</label>
-                            <div class="login-space">
-                                <div class="login">
-                                    <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text" class="input" placeholder="Enter your username"></input> </div>
-                                    <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Enter your password"></input> </div>
-                                    <br></br>
-                                    <br></br>
-                                    <div class="group"> <input type="submit" class="button" value="Sign In"></input> </div>
-                                    <div class="hr"></div>
-                                    <div class="foot"> <a href="#">Forgot Password?</a> </div>
-                                </div>
-                                <div class="sign-up-form">
-                                    <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text" class="input" placeholder="Create your Username"></input> </div>
-                                    <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Create your password"></input> </div>
-                                    <div class="group"> <label for="pass" class="label">Repeat Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Repeat your password"></input> </div>
-                                    <div class="group"> <label for="pass" class="label">Email Address</label> <input id="pass" type="text" class="input" placeholder="Enter your email address"></input> </div>
-                                    <div class="group"> <input type="submit" class="button" value="Sign Up"></input> </div>
-                                    <div class="hr"></div>
-                                    <div class="foot"> <label for="tab-1">Already Member?</label> </div>
+
+function SignIn(props) {
+
+    const [username, setUsername] = useState(0);
+    const [pass, setPass] = useState(0);
+    const history = useHistory();
+
+    const handleUserNameChange = (e) => {
+        setUsername(e.target.value);
+    }
+
+    const handlePassChange = (e) => {
+        setPass(e.target.value);
+    }
+
+    const handleSubmitSignIn = (e) => {
+        e.preventDefault();
+        props.setUsername(e.target.value);
+        props.setPass(e.target.value);
+        console.log(`Username is: ${username}, password is: ${pass}`);
+        history.push("/");
+    }
+
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6 mx-auto p-0">
+                    <div className="card">
+                        <div className="login-box">
+                            <div className="login-snip">
+                                <input id="tab-1" type="radio" name="tab" className="sign-in" defaultChecked></input>
+                                <label htmlFor="tab-1" className="tab">Login</label>
+                                <input id="tab-2" type="radio" name="tab" className="sign-up"></input>
+                                <label htmlFor="tab-2" className="tab">Sign Up</label>
+                                <div className="login-space">
+                                    <form className="login" onSubmit={handleSubmitSignIn}>
+                                        <div className="group">
+                                            <label htmlFor="user" className="label">Username</label>
+                                            <input id="input-user1" type="text" className="input" onChange={handleUserNameChange} placeholder="Enter your username"></input>
+                                        </div>
+                                        <div className="group">
+                                            <label htmlFor="pass" className="label">Password</label>
+                                            <input id="input-pass1" type="password" className="input" onChange={handlePassChange} data-type="password" placeholder="Enter your password" autoComplete="on"></input> </div>
+                                        <br></br>
+                                        <br></br>
+                                        <div className="group">
+                                            <input type="submit" className="button" value="Sign In"></input>
+                                        </div>
+                                        <div className="hr"></div>
+                                        <div className="foot"> <a href="#">Forgot Password?</a> </div>
+                                    </form>
+                                    <form className="sign-up-form">
+                                        <div className="group"> <label htmlFor="user" className="label">Username</label> <input id="input-user2" type="text" className="input" placeholder="Create your Username"></input> </div>
+                                        <div className="group"> <label htmlFor="pass" className="label">Password</label> <input id="input-pass2" type="password" className="input" data-type="password" placeholder="Create your password" autoComplete="on"></input> </div>
+                                        <div className="group"> <label htmlFor="pass" className="label">Repeat Password</label> <input id="input-pass3" type="password" className="input" data-type="password" placeholder="Repeat your password" autoComplete="on"></input> </div>
+                                        <div className="group"> <label htmlFor="pass" className="label">Email Address</label> <input id="input-pass4" type="text" className="input" placeholder="Enter your email address" autoComplete="on"></input> </div>
+                                        <div className="group">
+                                        <input type="submit" className="button" value="Sign Up"></input> </div>
+                                        <div className="hr"></div>
+                                        <div className="foot"> <label htmlFor="tab-1">Already Member?</label> </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     );
 }

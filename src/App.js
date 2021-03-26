@@ -2,9 +2,6 @@ import { useState } from 'react';
 import {
   Switch,
   Route,
-  Link,
-  useRouteMatch,
-  useParams,
   BrowserRouter
 } from 'react-router-dom'
 import HomePage from './components/HomePage/HomePage';
@@ -12,6 +9,10 @@ import ResturantPage from './components/ResturantView/ResturantPage';
 import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
+
+  const [username, setUserName] = useState("");
+  const [pass, setPass] = useState("");
+
   const obj = {
     title: "The Maw",
     rating: 4.5,
@@ -28,19 +29,17 @@ function App() {
       userImg: "http://brunoclaessens.com/wp-content/uploads/2015/07/Darth-Vader-Mumuye-head.jpg"
     }
   }
-  const [data, setData] = useState(obj);
-
+  const [data] = useState(obj);
 
   return (
     <div>
-      <BrowserRouter> 
+      <BrowserRouter>
         <Switch>
           <Route exact path='/'><HomePage  data= {data}/></Route>
           <Route exact path='/Resturant'><ResturantPage data= {data}/></Route>
-          <Route exact path='/Login'><SignInPage/></Route>
+          <Route exact path='/Login'><SignInPage setUsername={setUserName} setPass={setPass}/></Route>
         </Switch>
       </BrowserRouter>
-
     </div>
   );
 }
