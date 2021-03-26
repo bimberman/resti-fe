@@ -10,6 +10,20 @@ import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
 
+  // const BASE_URL = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/";
+
+  // useEffect(()=>{
+  //       fetch(`${BASE_URL}/reviews`,{
+  //         "Access-Control-Allow-Origin": "*"
+  //       })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         // eslint-disable-next-line no-console
+  //         console.log(data);
+  //       });
+  //     }
+  // )
+
   const [users, setUsers] = useState(
     [
       {
@@ -30,11 +44,11 @@ function App() {
   );
 
   const [currentUser, setCurrentUser] = useState({
-    id: 1,
-    username: "ten",
-    pass: "pass",
-    email: "something@email.com",
-    role: "user"
+    // id: 1,
+    // username: "ten",
+    // pass: "pass",
+    // email: "something@email.com",
+    // role: "user"
   })
 
   const [idCounter, setIdCounter] = useState({
@@ -173,18 +187,3 @@ function App() {
 }
 
 export default App;
-
-
-  // const BASE_URL = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/";
-
-  // useEffect(()=>{
-  //       fetch(`${BASE_URL}/reviews`,{
-  //         "Access-Control-Allow-Origin": "*"
-  //       })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         // eslint-disable-next-line no-console
-  //         console.log(data);
-  //       });
-  //     }
-  // )
