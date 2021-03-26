@@ -7,7 +7,7 @@ function SignInPage (props){
     return(
 
         <div>
-            <NavBar />
+            <NavBar currentUser={props.currentUser}/>
             <br></br>
             <br></br>
             <SignIn setUsers={props.setUsers} users={props.users} setCurrentUser={props.setCurrentUser}/>

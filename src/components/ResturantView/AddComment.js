@@ -2,6 +2,7 @@ import React from "react";
 import '../../css/AddCommentStyle.css';
 
   function AddComment(){
+
     return(
 
       <div className="row d-flex justify-content-center align-items-center rows">
