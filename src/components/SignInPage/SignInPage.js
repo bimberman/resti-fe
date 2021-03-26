@@ -3,14 +3,14 @@ import NavBar from '../HomePage/NavBar';
 import Footer from '../HomePage/Footer';
 import SignIn from './SignIn';
 
-function SignInPage (){
+function SignInPage (props){
     return(
 
         <div>
             <NavBar />
             <br></br>
             <br></br>
-            <SignIn />
+            <SignIn setUsers={props.setUsers} users={props.users} setCurrentUser={props.setCurrentUser}/>
             <br></br>
             <br></br>
             <Footer />

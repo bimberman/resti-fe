@@ -1,17 +1,17 @@
 import NavBar from '../HomePage/NavBar';
 import Footer from '../HomePage/Footer';
-import ResturantBody from './ResturantBody';
+import RestaurantBody from './RestaurantBody';
 import { useState } from 'react';
 
 
-function ResturantPage({data}){
-    const [obj, setObj] = useState(data);
+function RestaurantPage({data}){
+    const [obj] = useState(data);
 
     return(
         <div>
             <NavBar />
             <br></br>
-            <ResturantBody obj = {obj}/>
+            <RestaurantBody obj = {obj}/>
             <br></br>
             <br></br>
             <br></br>
@@ -20,4 +20,4 @@ function ResturantPage({data}){
     );
 }
 
-export default ResturantPage;
+export default RestaurantPage;

@@ -3,16 +3,16 @@ import '../../css/AddCommentStyle.css';
 
   function AddComment(){
     return(
-      
-      <div class="row d-flex justify-content-center align-items-center rows">
-      <div class="col-md-6">
-          
-              <div class="text-center">
 
-                      <div class="input-group  "> <input type="text" class="form-control" placeholder="Write Review" aria-label="Recipient's username" aria-describedby="button-addon2"></input> <button class=" btn-primary border-rad" type="button" id="button-addon2">Add Review</button> </div>
+      <div className="row d-flex justify-content-center align-items-center rows">
+      <div className="col-md-6">
+
+              <div className="text-center">
+
+                      <div className="input-group  "> <input type="text" className="form-control" placeholder="Enter email" aria-label="Recipient's username" aria-describedby="button-addon2"></input> <button className="btn btn-primary border-rad" type="button" id="button-addon2">Add Review</button> </div>
                   </div>
 
-          
+
       </div>
   </div>
 
