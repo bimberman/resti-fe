@@ -2,7 +2,6 @@ import Header from './Header';
 import NavBar from './NavBar';
 import  OtherCard from './Card';
 import Footer from './Footer';
-import { useState } from 'react';
 
 function HomePage(props) {
   return (
