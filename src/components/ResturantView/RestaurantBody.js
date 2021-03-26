@@ -1,59 +1,79 @@
 import Comment from './Comment';
 import CommentHeader from './CommentHeader';
 import '../../css/CommentStyle.css';
-import { useState } from 'react';
 import AddComment from './AddComment';
-
-
+import { useState, useEffect } from "react";
 
 function RestaurantBody(props){
-    
+    const [reviews, setReviews] = useState([])
 
+    useEffect(() => {
+        props.reviews.forEach(review => {
+            if (review.restaurantId === props.currentRestaurant.id) {
+                setReviews(prevState => ([
+                    ...prevState,
+                    review
+                ]))
+            }
+        })
+    }, [props.reviews, props.currentRestaurant])
 
+    const removeComment = (id) => {
+        if(props.currentUser.role==="admin"){
+            props.setReviews(reviews.filter(review=>review.id!==id));
+        }
+    }
 
     return(
-        <div class = "container">
+        <div className = "container">
             <div className="card card-cascade  reverse">
-
             <div className="view view-cascade overlay">
                 <br></br>
-                <img className="card-img-top" src={props.obj.imgUrl}
+                <img className="card-img-top" src={props.currentRestaurant.imgUrl}
                 alt="Card cap"></img>
                 <a href="#!">
                 <div className="mask rgba-white-slight"></div>
                 </a>
             </div>
-
             <div className="card-body card-body-cascade text-center">
-
-                <h4 className="card-title"><strong>{props.obj.title}</strong></h4>
+                <h4 className="card-title"><strong>{props.currentRestaurant.title}</strong></h4>
                 <ul className="list-unstyled list-inline rating mb-0">
                     <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"> </i></li>
                     <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
                     <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
                     <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
                     <li className="list-inline-item"><i className="fa fa-star-half-alt amber-text"></i></li>
-                    <li className="list-inline-item"><p className="text-muted">{props.obj.rating} ({props.obj.numOfReviews})</p></li>
+                    <li className="list-inline-item"><p className="text-muted">{props.currentRestaurant.rating} ({props.currentRestaurant.numOfReviews})</p></li>
                 </ul>
-                <p className="card-text">{props.obj.description}</p>
-
-
+                <p className="card-text">{props.currentRestaurant.description}</p>
             </div>
-            <p className="ml-5">Phone Number: {props.obj.phoneNumber}</p>
-            <p className="ml-5">Address: {props.obj.location}</p>
+            <p className="ml-5">Phone Number: {props.currentRestaurant.phoneNumber}</p>
+            <p className="ml-5">Address: {props.currentRestaurant.location}</p>
             <br></br>
             </div>
             <div className="container mt-5">
                 <div className="row d-flex justify-content-center">
                     <div className="col-md-8">
-
                         <CommentHeader />
                         <hr></hr>
-
-                        <Comment data = {props.obj}/>
+                        {
+                            reviews.map(review => {
+                                return (
+                                    <div key={review.id}>
+                                        <Comment
+                                            review={review}
+                                            removeComment={removeComment}/>
+                                    </div>
+                                )
+                            })
+                        }
                         <br></br>
-                        <AddComment currentUser = {props.currentUser}/>
-
+                        <AddComment
+                            currentUser = {props.currentUser}
+                            currentRestaurant={props.currentRestaurant}
+                            reviews={props.reviews}
+                            idCounter={props.idCounter}
+                            setIdCounter={props.setIdCounter}/>
                     </div>
                 </div>
             </div>

@@ -1,17 +1,19 @@
 import NavBar from '../HomePage/NavBar';
 import Footer from '../HomePage/Footer';
 import RestaurantBody from './RestaurantBody';
-import { useState } from 'react';
-
 
 function RestaurantPage(props){
-
     return(
         <div>
             <NavBar currentUser={props.currentUser}/>
             <br></br>
-            <RestaurantBody obj = {props.data} currentUser = {props.currentUser}/>
-
+            <RestaurantBody
+                reviews={props.reviews}
+                setReviews={props.setReviews}
+                currentRestaurant={props.currentRestaurant}
+                currentUser = {props.currentUser}
+                idCounter={props.idCounter}
+                setIdCounter={props.setIdCounter}/>
             <br></br>
             <br></br>
             <br></br>

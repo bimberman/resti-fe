@@ -13,15 +13,120 @@ function App() {
   const [users, setUsers] = useState(
     [
       {
+        id: 1,
         username: "ten",
-        pass: "pass"
+        pass: "pass",
+        email: "something@email.com",
+        role: "user"
       },
       {
+        id: 2,
         username: "root",
-        pass: "rootroot"
+        pass: "rootroot",
+        email: "something@email.com",
+        role: "admin"
       }
     ]
   );
+
+  const [currentUser, setCurrentUser] = useState({
+    id: 1,
+    username: "ten",
+    pass: "pass",
+    email: "something@email.com",
+    role: "user"
+  })
+
+  const [idCounter, setIdCounter] = useState({
+    restaurants: 2,
+    users: 2,
+    reviews: 1
+  })
+
+  const [restaurants] = useState(
+    [
+      {
+        id: 1,
+        title: "The Maw",
+        rating: 4.5,
+        description: "A classic burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
+        numOfReviews: 1,
+        imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
+        foodGenre: "American, Restaurant",
+        location: "1234 dixie lane",
+        phoneNumber: "1234567890",
+      },
+      {
+        id: 2,
+        title: "The Maw 2",
+        rating: 3,
+        description: "A different burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
+        numOfReviews: 0,
+        imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
+        foodGenre: "American, Restaurant",
+        location: "1234 copycat lane",
+        phoneNumber: "0987654321",
+      },
+    ]
+  )
+
+  const [currentRestaurant, setCurrentRestaurant] = useState({})
+
+  const [reviews, setReviews] = useState(
+    [
+      {
+        id: 1,
+        restaurantId: 1,
+        rating: 4.5,
+        message: "A classic burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
+        user: {
+          username: "ten",
+          role: "user",
+          userImg: "http://brunoclaessens.com/wp-content/uploads/2015/07/Darth-Vader-Mumuye-head.jpg"
+        }
+      }
+    ]
+  )
+
+  return (
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/'>
+            <HomePage
+              restaurants={restaurants}
+              setCurrentRestaurant={setCurrentRestaurant}
+              currentUser={currentUser}
+              idCounter={idCounter}
+              setIdCounter={setIdCounter}/>
+          </Route>
+          <Route exact path='/Restaurant'>
+            <RestaurantPage
+              currentRestaurant={currentRestaurant}
+              currentUser={currentUser}
+              reviews={reviews}
+              setReviews={setReviews}
+              idCounter={idCounter}
+              setIdCounter={setIdCounter}
+              />
+          </Route>
+          <Route exact path='/Login'>
+            <SignInPage
+              setUsers={setUsers}
+              users={users}
+              setCurrentUser={setCurrentUser}
+              currentUser={currentUser}
+              idCounter={idCounter}
+              setIdCounter={setIdCounter}/>\
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+
 
   // const BASE_URL = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/";
 
@@ -36,38 +141,3 @@ function App() {
   //       });
   //     }
   // )
-
-  const [currentUser, setCurrentUser] = useState({})
-
-  const obj = {
-    title: "The Maw",
-    rating: 4.5,
-    description: "A classic burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
-    numOfReviews: 13,
-    imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
-    foodGenre: "American, Restaurant",
-    location: "1234 dixie lane",
-    phoneNumber: "1234567890",
-    person: {
-      name: "john doe",
-      review: "This place sucks",
-      userRole: "admin",
-      userImg: "http://brunoclaessens.com/wp-content/uploads/2015/07/Darth-Vader-Mumuye-head.jpg"
-    }
-  }
-  const [data] = useState(obj);
-
-  return (
-    <div>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/'><HomePage data={data} currentUser={currentUser}/></Route>
-          <Route exact path='/Restaurant'><RestaurantPage data={data} currentUser={currentUser}/></Route>
-          <Route exact path='/Login'><SignInPage setUsers={setUsers} users={users} setCurrentUser={setCurrentUser} currentUser={currentUser}/></Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
-}
-
-export default App;
