@@ -7,9 +7,11 @@ function NavBar(props){
                 <div className="container">
                 <Link to={'/'}><img src={Header} alt="review" height = "50px"></img> Resti Review</Link>
                 <Link to={'/Login'}><i className="fa fa-user-circle fa-2x"></i>&nbsp;&nbsp;
-                    {props.currentUser.username
-                        ? props.currentUser.username
-                        : "Log In"}
+                    {
+                        props.currentUser.username
+                            ? props.currentUser.username
+                            : "Log In"
+                    }
                 </Link>
                 </div>
             </nav>

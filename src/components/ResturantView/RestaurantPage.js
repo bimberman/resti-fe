@@ -1,8 +1,6 @@
 import NavBar from '../HomePage/NavBar';
 import Footer from '../HomePage/Footer';
 import RestaurantBody from './RestaurantBody';
-import { useState } from 'react';
-
 
 function RestaurantPage(props){
     return(
