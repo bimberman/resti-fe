@@ -9,15 +9,11 @@ function Header(){
             <div className="col-xl-9 mx-auto">
               <h4 className="mb-5">Welcome to Resti Review</h4>
             </div>
-            <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <div className="col-md-17 col-lg-6 col-xl-5 mx-auto">
               <form>
-                <div className="form-row">
-                  <div className="col-12 col-md-9 mb-2 mb-md-0">
-                    <input type="email" className="form-control form-control-lg" placeholder="Search For A Restaurant..."></input>
-                  </div>
-                  <div className="col-12 col-md-3">
-                    <button type="submit" className="btn btn-block btn-lg btn-primary">Search</button>
-                  </div>
+                <div className="form-row justify-content-center ">
+                <div className="input-group  col-12 "> <input type="text" className="form-control" placeholder="Search For A Restaurant" aria-label="Recipient's username" aria-describedby="button-addon2"></input> <button className=" btn-primary border-rad col-3" type="button" id="button-addon2" >Search</button> </div>
+
                 </div>
               </form>
             </div>
