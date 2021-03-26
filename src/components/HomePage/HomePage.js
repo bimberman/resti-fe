@@ -2,20 +2,18 @@ import Header from './Header';
 import NavBar from './NavBar';
 import  OtherCard from './Card';
 import Footer from './Footer';
-import { useState } from 'react';
 
-function HomePage({data}) {
-  const [obj] = useState(data);
+function HomePage(props) {
   return (
     <div>
-      <NavBar />
+      <NavBar currentUser={props.currentUser}/>
       <Header/>
-      <p>{obj.rating}</p>
+      <p>{props.data.rating}</p>
       <br></br>
       <div className = "container">
       <div className = "row justify-content-center">
 
-        <OtherCard obj ={obj}/>
+        <OtherCard obj ={props.data}/>
 
         </div>
         </div>

@@ -23,6 +23,20 @@ function App() {
     ]
   );
 
+  // const BASE_URL = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/";
+
+  // useEffect(()=>{
+  //       fetch(`${BASE_URL}/reviews`,{
+  //         "Access-Control-Allow-Origin": "*"
+  //       })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         // eslint-disable-next-line no-console
+  //         console.log(data);
+  //       });
+  //     }
+  // )
+
   const [currentUser, setCurrentUser] = useState({})
 
   const obj = {
@@ -47,9 +61,9 @@ function App() {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route exact path='/'><HomePage  data= {data}/></Route>
-          <Route exact path='/Restaurant'><RestaurantPage data= {data} currentUser = {currentUser}/></Route>
-          <Route exact path='/Login'><SignInPage setUsers={setUsers} users={users} setCurrentUser={setCurrentUser}/></Route>
+          <Route exact path='/'><HomePage data={data} currentUser={currentUser}/></Route>
+          <Route exact path='/Restaurant'><RestaurantPage data={data} currentUser={currentUser}/></Route>
+          <Route exact path='/Login'><SignInPage setUsers={setUsers} users={users} setCurrentUser={setCurrentUser} currentUser={currentUser}/></Route>
         </Switch>
       </BrowserRouter>
     </div>
