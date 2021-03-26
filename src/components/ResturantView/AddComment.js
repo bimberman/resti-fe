@@ -22,6 +22,7 @@ function AddComment(props) {
           restaurants: props.idCounter.restaurants,
           users: props.idCounter.users,
           reviews: ++props.idCounter.reviews
+          
         })
       })
       props.reviews.push({

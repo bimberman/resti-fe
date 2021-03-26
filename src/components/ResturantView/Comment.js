@@ -12,10 +12,10 @@ function Comment(props){
                     <img src={props.review.user.userImg} width="30" alt="user" className="user-img rounded-circle mr-2"></img>
                     <span>
                         <small className="font-weight-bold text-primary">{props.review.user.username}</small>
-                        <small className="font-weight-bold">{props.review.message}</small>
+                        <small className="font-weight-bold">&nbsp;{props.review.message}</small>
                     </span>
                 </div>
-                <small>{props.review.user.role}</small>
+                <small>{props.currentUser.role}</small>
             </div>
             <div className="action d-flex justify-content-between mt-2 align-items-center">
                 <div className="px-4">

@@ -30,11 +30,7 @@ function App() {
   );
 
   const [currentUser, setCurrentUser] = useState({
-    id: 1,
-    username: "ten",
-    pass: "pass",
-    email: "something@email.com",
-    role: "user"
+
   })
 
   const [idCounter, setIdCounter] = useState({

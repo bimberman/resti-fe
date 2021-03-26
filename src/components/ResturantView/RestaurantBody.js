@@ -20,8 +20,11 @@ function RestaurantBody(props){
     }, [props.reviews, props.currentRestaurant])
 
     const removeComment = (id) => {
-        if(props.currentUser.role==="admin"){
+        if(props.currentUser.role==="Admin"){
             props.setReviews(reviews.filter(review=>review.id!==id));
+        }
+        else{
+            alert('You need to be an Admin to remove comments!');
         }
     }
 
@@ -63,6 +66,7 @@ function RestaurantBody(props){
                                     <div key={review.id}>
                                         <Comment
                                             review={review}
+                                            currentUser={props.currentUser}
                                             removeComment={removeComment}/>
                                     </div>
                                 )

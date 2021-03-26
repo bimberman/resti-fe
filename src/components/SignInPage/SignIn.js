@@ -6,6 +6,7 @@ function SignIn(props) {
 
     const [username, setUsername] = useState(0);
     const [pass, setPass] = useState(0);
+    const [role, setRole] = useState("User");
     const [pass2, setPass2] = useState(0);
     const [email, setEmail] = useState(0);
     const history = useHistory();
@@ -32,7 +33,8 @@ function SignIn(props) {
         matches.forEach(match => {
             if (match.pass === pass){
 
-                props.setCurrentUser({ username: username, pass: pass});
+                props.setCurrentUser({ username: username, pass: pass, role: props.users.role});
+                console.log(username + " " + role);
                 history.push("/");
             }
         })
@@ -44,9 +46,10 @@ function SignIn(props) {
             props.users.push({
                 username: username,
                 pass: pass,
-                email: email
+                email: email,
             });
-            props.setCurrentUser({ username: username, pass: pass, email: email });
+            props.setCurrentUser({ username: username, pass: pass, email: email, role: role});
+            console.log(username + " " + role);
             history.push("/");
         }
     }
@@ -70,7 +73,8 @@ function SignIn(props) {
                                         </div>
                                         <div className="group">
                                             <label htmlFor="pass" className="label">Password</label>
-                                            <input id="input-pass1" type="password" className="input" onChange={handlePassChange} data-type="password" placeholder="Enter your password" autoComplete="on"></input> </div>
+                                            <input id="input-pass1" type="password" className="input" onChange={handlePassChange} data-type="password" placeholder="Enter your password" autoComplete="on"></input>
+                                             </div>
                                         <br></br>
                                         <br></br>
                                         <div className="group">
