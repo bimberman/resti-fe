@@ -5,13 +5,25 @@ import {
   BrowserRouter
 } from 'react-router-dom'
 import HomePage from './components/HomePage/HomePage';
-import ResturantPage from './components/ResturantView/ResturantPage';
+import RestaurantPage from './components/ResturantView/RestaurantPage';
 import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
 
-  const [username, setUserName] = useState("");
-  const [pass, setPass] = useState("");
+  const [users, setUsers] = useState(
+    [
+      {
+        username: "ten",
+        pass: "pass"
+      },
+      {
+        username: "root",
+        pass: "rootroot"
+      }
+    ]
+  );
+
+  const [currentUser, setCurrentUser] = useState({})
 
   const obj = {
     title: "The Maw",
@@ -36,8 +48,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path='/'><HomePage  data= {data}/></Route>
-          <Route exact path='/Resturant'><ResturantPage data= {data}/></Route>
-          <Route exact path='/Login'><SignInPage setUsername={setUserName} setPass={setPass}/></Route>
+          <Route exact path='/Restaurant'><RestaurantPage data= {data}/></Route>
+          <Route exact path='/Login'><SignInPage setUsers={setUsers} users={users} setCurrentUser={setCurrentUser}/></Route>
         </Switch>
       </BrowserRouter>
     </div>

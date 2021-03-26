@@ -10,7 +10,7 @@ function SignInPage (props){
             <NavBar />
             <br></br>
             <br></br>
-            <SignIn setUsername={props.setUsername} setPass={props.setPass}/>
+            <SignIn setUsers={props.setUsers} users={props.users} setCurrentUser={props.setCurrentUser}/>
             <br></br>
             <br></br>
             <Footer />
