@@ -7,7 +7,7 @@ function Header(props){
 
   const handleChange = (e) => {
     setRestaurant(e.target.value);
-    props.searchRestaurants(e.target.value);
+    props.partialSearchRestaurants(e.target.value);
   }
 
   const handleClick = (e) => {
