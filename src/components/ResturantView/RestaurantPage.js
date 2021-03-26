@@ -6,8 +6,6 @@ import { useState } from 'react';
 
 function RestaurantPage(props){
 
-
-function RestaurantPage(props){
     return(
         <div>
             <NavBar currentUser={props.currentUser}/>
