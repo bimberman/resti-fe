@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Switch,
   Route,
@@ -10,19 +10,45 @@ import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
 
-  // const BASE_URL = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/";
+  const BASE_URL = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api";
 
-  // useEffect(()=>{
-  //       fetch(`${BASE_URL}/reviews`,{
-  //         "Access-Control-Allow-Origin": "*"
-  //       })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         // eslint-disable-next-line no-console
-  //         console.log(data);
-  //       });
-  //     }
-  // )
+  useEffect(()=>{
+    fetchAllReviews();
+  },[])
+
+  const fetchAllReviews = async () => {
+    try {
+      fetch(`${BASE_URL}/reviews`)
+        .then(res => res.json())
+        .then(data => {
+          ;
+        });
+    } catch (err) {
+      console.error("Getting error: " + err);
+    }
+  }
+
+  const fetchPostReviews = async () => {
+    try {
+      fetch("http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/add/review",
+        {
+          method: "POST",
+          headers:{
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            "id": 2,
+            "comment": "string",
+            "creationDate": "2021-03-25",
+            "user_id": 2,
+            "restaurant_id": 3,
+            "rating": 4
+          })
+        })
+    } catch (err) {
+      console.error("Getting error: " + err);
+    }
+  }
 
   const [users, setUsers] = useState(
     [
