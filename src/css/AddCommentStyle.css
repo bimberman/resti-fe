@@ -26,22 +26,22 @@
     background-color: #fff;
     border-color: #ffffff;
     outline: 0;
-    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+    box-shadow: 0 0 0 1px #0275d8 !important
 }
 
 .send {
     color: #fff;
-    background-color: #ff0000;
-    border-color: #ff0000
+    background-color: #ffc107;
+    border-color: #ffc107;
 }
 
 .send:hover {
     color: #fff;
-    background-color: #f50202;
-    border-color: #f50202
+    background-color: #0275d8;
+    border-color: #0275d8;
 }
 
-.rating {
+.rate {
     display: flex;
     margin-top: -10px;
     flex-direction: row-reverse;
@@ -49,33 +49,33 @@
     float: left
 }
 
-.rating>input {
+.rate>input {
     display: none
 }
 
-.rating>label {
+.rate>label {
     position: relative;
     width: 19px;
     font-size: 25px;
-    color: #ff0000;
+    color: #ffc107;
     cursor: pointer
 }
 
-.rating>label::before {
+.rate>label::before {
     content: "\2605";
     position: absolute;
     opacity: 0
 }
 
-.rating>label:hover:before,
-.rating>label:hover~label:before {
+.rate>label:hover:before,
+.rate>label:hover~label:before {
     opacity: 1 !important
 }
 
-.rating>input:checked~label:before {
+.rate>input:checked~label:before {
     opacity: 1
 }
 
-.rating:hover>input:checked~label:before {
+.rate:hover>input:checked~label:before {
     opacity: 0.4
 }

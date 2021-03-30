@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../../css/AddCommentStyle.css';
 
 function AddComment(props) {
 
   const [message, setMessage] = useState();
+  useEffect((e) =>{
+    document.getElementById("clearText").value = "";
 
+  },[])
   const handleChange = (e) => {
     setMessage(e.target.value)
   }
@@ -38,27 +41,25 @@ function AddComment(props) {
   }
 
   return (
-        <div class="card">
+        <div className="d-flex justify-content-center">
+        <div class="comment-card">
         <div class="row ">
-            <div class="col-2"> <img src="https://i.imgur.com/xELPaag.jpg" width="70" class="rounded-circle mt-2"></img> </div>
             <div class="col-10">
                 <div class="comment-box ml-2">
-                    <h4>Add a comment</h4>
-                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"></input><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"></input><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"></input><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"></input><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"></input><label for="1">☆</label> </div>
-                    <div class="comment-area"> <textarea class="form-control" placeholder="what is your view?" rows="4"></textarea> </div>
+                    <h4>Add A Review</h4>
+                    <div class="rate"> <input type="radio" name="rate" value="5" id="5"></input><label for="5">☆</label> <input type="radio" name="rate" value="4" id="4"></input><label for="4">☆</label> <input type="radio" name="rate" value="3" id="3"></input><label for="3">☆</label> <input type="radio" name="rate" value="2" id="2"></input><label for="2">☆</label> <input type="radio" name="rate" value="1" id="1"></input><label for="1">☆</label> </div>
+                    <div class="comment-area"> <textarea onChange={handleChange} class="form-control" placeholder="what is your view?" rows="3" id= "clearText"></textarea> </div>
                     <div class="comment-btns mt-2">
                         <div class="row">
                             <div class="col-6">
-                                <div class="pull-left"> <button class="btn btn-success btn-sm">Cancel</button> </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="pull-right"> <button class="btn btn-success send btn-sm">Send <i class="fa fa-long-arrow-right ml-1"></i></button> </div>
+                                <div class="align-content-center"> <button onClick={handleClick} class="btn btn-primary send btn-sm">Send <i class="fa fa-long-arrow-right ml-1"></i></button> </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
   );
 }

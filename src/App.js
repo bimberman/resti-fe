@@ -10,10 +10,11 @@ import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
 
-  const BASE_URL = "jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com/";
+  const BASE_URL = "http://jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com";
 
   useEffect(()=>{
     fetchAllReviews();
+    fetchAllUsers();
   },[])
 
   const fetchAllReviews = async () => {
@@ -23,6 +24,18 @@ function App() {
         .then(data => {
           console.log(data);
           setRestaurants(data);
+        });
+    } catch (err) {
+      console.error("Getting error: " + err);
+    }
+  }
+  const fetchAllUsers = async () => {
+    try {
+      fetch("http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com/")
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          setUsers(data);
         });
     } catch (err) {
       console.error("Getting error: " + err);
