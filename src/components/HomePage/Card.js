@@ -26,9 +26,9 @@ function Card(props){
                         <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
                         <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
                         <li className="list-inline-item"><i className="fa fa-star-half-alt amber-text"></i></li>
-                        <li className="list-inline-item"><p className="text-muted">{props.restaurant.rating} ({props.restaurant.review ? props.restaurant.review.length  : 0})</p></li>
+                        <li className="list-inline-item"><p className="text-muted">{props.restaurant.rating} ({props.restaurant.numOfRating})</p></li>
                     </ul>
-                    <p className="mb-2">$ • {props.restaurant.foodGenre}</p>
+                    <p className="mb-2">$ • {props.restaurant.category}</p>
                     <p className="card-text">{props.restaurant.description}</p>
                     <hr className="my-4"></hr>
 
