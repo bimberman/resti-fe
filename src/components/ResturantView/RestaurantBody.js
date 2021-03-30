@@ -72,9 +72,7 @@ function RestaurantBody(props){
                         <AddComment
                             currentUser = {props.currentUser}
                             currentRestaurant={props.currentRestaurant}
-                            reviews={props.reviews}
-                            idCounter={props.idCounter}
-                            setIdCounter={props.setIdCounter}/>
+                            reviews={props.reviews}/>
                     </div>
                 </div>
             </div>

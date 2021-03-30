@@ -35,13 +35,12 @@ function SignIn(props) {
     const handleSubmitSignUp = async (e) => {
         e.preventDefault();
         if (pass === pass2) {
-            props.users.push({
-                username: username,
-                pass: pass
-            });
             try{
                 fetch(`http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com/api/add/user`, {
                     "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
                     "body": JSON.stringify({
                         username: username,
                         pass: pass,

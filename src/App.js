@@ -10,12 +10,52 @@ import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
 
+  const [users, setUsers] = useState();
+  const [currentUser, setCurrentUser] = useState({})
+  const [restaurants, setRestaurants] = useState([])
+  const [findRestaurants, setFindRestaurants] = useState([])
+  const [currentRestaurant, setCurrentRestaurant] = useState({})
+  const [reviews, setReviews] = useState([
+    {
+      "id": 1,
+      "comment": "string",
+      "creationDate": "2021-03-25",
+      "userId": 0,
+      "username": null,
+      "restaurantId": 0,
+      "rating": 0,
+      "imageUrl": null
+    },
+    {
+      "id": 2,
+      "comment": "string",
+      "creationDate": "2021-03-25",
+      "userId": 2,
+      "username": null,
+      "restaurantId": 3,
+      "rating": 4,
+      "imageUrl": null
+    },
+    {
+      "id": 3,
+      "comment": "string",
+      "creationDate": "2021-03-25",
+      "userId": 2,
+      "username": null,
+      "restaurantId": 3,
+      "rating": 4,
+      "imageUrl": null
+    }
+  ])
+
   const BASE_URL_RESTAURANT_SERVICE = "http://jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com";
   const BASE_URL_USER_SERVICE = "http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com";
+  const BASE_URL_REVIEW_SERVICE = "http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com";
 
   useEffect(()=>{
     fetchAllRestaurants();
     fetchAllUsers();
+    // fetchAllReviews();
   },[])
 
   const fetchAllRestaurants = async () => {
@@ -42,43 +82,17 @@ function App() {
     }
   }
 
-  const [users, setUsers] = useState();
-
-  const [currentUser, setCurrentUser] = useState({
-    // id: 1,
-    // username: "ten",
-    // pass: "pass",
-    // email: "something@email.com",
-    // role: "user"
-  })
-
-  const [idCounter, setIdCounter] = useState({
-    restaurants: 2,
-    users: 2,
-    reviews: 1
-  })
-
-  const [restaurants, setRestaurants] = useState([])
-
-  const [findRestaurants, setFindRestaurants] = useState([])
-
-  const [currentRestaurant, setCurrentRestaurant] = useState({})
-
-  const [reviews, setReviews] = useState(
-    [
-      {
-        id: 1,
-        restaurantId: 1,
-        rating: 4.5,
-        message: "A classic burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
-        user: {
-          username: "ten",
-          role: "user",
-          userImg: "http://brunoclaessens.com/wp-content/uploads/2015/07/Darth-Vader-Mumuye-head.jpg"
-        }
-      }
-    ]
-  )
+  const fetchAllReviews = async () => {
+    try {
+      fetch(`${BASE_URL_REVIEW_SERVICE}/api/reviews/all`)
+        .then(res => res.json())
+        .then(data => {
+          setReviews(data);
+        });
+    } catch (err) {
+      console.error("Getting error: " + err);
+    }
+  }
 
   const searchRestaurants = (str) => {
     if (str) {
@@ -111,8 +125,6 @@ function App() {
               partialSearchRestaurants={partialSearchRestaurants}
               setCurrentRestaurant={setCurrentRestaurant}
               currentUser={currentUser}
-              idCounter={idCounter}
-              setIdCounter={setIdCounter}
               setFindRestaurants={setFindRestaurants}/>
           </Route>
           <Route exact path='/Restaurant'>
@@ -121,8 +133,6 @@ function App() {
               currentUser={currentUser}
               reviews={reviews}
               setReviews={setReviews}
-              idCounter={idCounter}
-              setIdCounter={setIdCounter}
               />
           </Route>
           <Route exact path='/Login'>
@@ -130,9 +140,7 @@ function App() {
               setUsers={setUsers}
               users={users}
               setCurrentUser={setCurrentUser}
-              currentUser={currentUser}
-              idCounter={idCounter}
-              setIdCounter={setIdCounter}/>\
+              currentUser={currentUser}/>
           </Route>
         </Switch>
       </BrowserRouter>

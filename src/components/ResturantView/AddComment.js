@@ -12,10 +12,6 @@ function AddComment(props) {
     setMessage(e.target.value)
   }
 
-  const handleCancelClick = (e) => {
-    setMessage("")
-  }
-
   const handleSendClick = (e) => {
     e.preventDefault();
     if (!props.currentUser.username) {
@@ -24,15 +20,8 @@ function AddComment(props) {
     }
 
     if(message){
-      props.setIdCounter(()=>{
-        return ({
-          restaurants: props.idCounter.restaurants,
-          users: props.idCounter.users,
-          reviews: ++props.idCounter.reviews
-        })
-      })
       props.reviews.push({
-        id: props.idCounter.reviews,
+        id: props.reviews.id,
         restaurantId: props.currentRestaurant.id,
         rating: 4.5,
         message: message,
