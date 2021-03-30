@@ -10,18 +10,19 @@ import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
 
-  const BASE_URL = "jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com/";
+  const BASE_URL_RESTAURANT_SERVICE = "http://jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com";
+  const BASE_URL_USER_SERVICE = "http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com";
 
   useEffect(()=>{
-    fetchAllReviews();
+    fetchAllRestaurants();
+    fetchAllUsers();
   },[])
 
-  const fetchAllReviews = async () => {
+  const fetchAllRestaurants = async () => {
     try {
-      fetch(`${BASE_URL}/api/restaurants/all`)
+      fetch(`${BASE_URL_RESTAURANT_SERVICE}/api/restaurants/all`)
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           setRestaurants(data);
         });
     } catch (err) {
@@ -29,46 +30,19 @@ function App() {
     }
   }
 
-  const fetchPostReviews = async () => {
+  const fetchAllUsers = async () => {
     try {
-      fetch("http://jumpfinalprojectreviews-ehttp://www.brookvalepta.com/wp-content/uploads/2014/02/pf-changs.jpgnv.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/add/review",
-        {
-          method: "POST",
-          headers:{
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            "id": 2,
-            "comment": "string",
-            "creationDate": "2021-03-25",
-            "user_id": 2,
-            "restaurant_id": 3,
-            "rating": 4
-          })
-        })
+      fetch(`${BASE_URL_USER_SERVICE}/api/users`)
+        .then(res => res.json())
+        .then(data => {
+          setUsers(data);
+        });
     } catch (err) {
       console.error("Getting error: " + err);
     }
   }
 
-  const [users, setUsers] = useState(
-    [
-      {
-        id: 1,
-        username: "ten",
-        pass: "pass",
-        email: "something@email.com",
-        role: "user"
-      },
-      {
-        id: 2,
-        username: "root",
-        pass: "rootroot",
-        email: "something@email.com",
-        role: "admin"
-      }
-    ]
-  );
+  const [users, setUsers] = useState();
 
   const [currentUser, setCurrentUser] = useState({
     // id: 1,

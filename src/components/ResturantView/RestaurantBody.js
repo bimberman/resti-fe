@@ -5,7 +5,7 @@ import AddComment from './AddComment';
 import { useState, useEffect } from "react";
 
 function RestaurantBody(props){
-    const [reviews, setReviews] = useState([])
+    const [reviews, setReviews] = useState([props.reviews])
 
     useEffect(() => {
         setReviews(()=>[]);

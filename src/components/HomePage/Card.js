@@ -13,7 +13,7 @@ function Card(props){
         <div className="col-md-4 mt-5">
             <div className="card booking-card">
                 <div className="view overlay">
-                    <img className="card-img-top" src={props.restaurant.imageURL} alt={props.restaurant.name} height = "275px" width = "250px"></img>
+                    <img className="card-img-top" src={props.restaurant.imgUrl} alt={props.restaurant.name} height = "275px" width = "250px"></img>
                     <div className="mask rgba-white-slight"></div>
                 </div>
 
