@@ -38,28 +38,27 @@ function AddComment(props) {
   }
 
   return (
-    <div className="row d-flex justify-content-center align-items-center rows">
-      <div className="col-md-6">
-        <div className="text-center">
-          <div className="input-group  ">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter Review"
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
-              onChange={handleChange}>
-            </input>
-            <button
-              className=" btn-primary border-rad"
-              type="button"
-              id="button-addon2"
-              onClick={handleClick}>
-              Add Review
-            </button>
-          </div>
+        <div class="card">
+        <div class="row ">
+            <div class="col-2"> <img src="https://i.imgur.com/xELPaag.jpg" width="70" class="rounded-circle mt-2"></img> </div>
+            <div class="col-10">
+                <div class="comment-box ml-2">
+                    <h4>Add a comment</h4>
+                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"></input><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"></input><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"></input><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"></input><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"></input><label for="1">☆</label> </div>
+                    <div class="comment-area"> <textarea class="form-control" placeholder="what is your view?" rows="4"></textarea> </div>
+                    <div class="comment-btns mt-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="pull-left"> <button class="btn btn-success btn-sm">Cancel</button> </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="pull-right"> <button class="btn btn-success send btn-sm">Send <i class="fa fa-long-arrow-right ml-1"></i></button> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
   );
 }

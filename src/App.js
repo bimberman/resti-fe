@@ -10,7 +10,7 @@ import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
 
-  const BASE_URL = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api";
+  const BASE_URL = "jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com/";
 
   useEffect(()=>{
     fetchAllReviews();
@@ -18,10 +18,11 @@ function App() {
 
   const fetchAllReviews = async () => {
     try {
-      fetch(`${BASE_URL}/reviews`)
+      fetch(`${BASE_URL}/api/restaurants/all`)
         .then(res => res.json())
         .then(data => {
-          ;
+          console.log(data);
+          setRestaurants(data);
         });
     } catch (err) {
       console.error("Getting error: " + err);
@@ -30,7 +31,7 @@ function App() {
 
   const fetchPostReviews = async () => {
     try {
-      fetch("http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/add/review",
+      fetch("http://jumpfinalprojectreviews-ehttp://www.brookvalepta.com/wp-content/uploads/2014/02/pf-changs.jpgnv.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/add/review",
         {
           method: "POST",
           headers:{
@@ -83,54 +84,7 @@ function App() {
     reviews: 1
   })
 
-  const [restaurants] = useState(
-    [
-      {
-        id: 1,
-        title: "The Maw",
-        rating: 4.5,
-        description: "A classic burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
-        numOfReviews: 1,
-        imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
-        foodGenre: "American, Restaurant",
-        location: "1234 dixie lane",
-        phoneNumber: "1234567890",
-      },
-      {
-        id: 2,
-        title: "The Maw 2",
-        rating: 3,
-        description: "A different burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
-        numOfReviews: 0,
-        imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
-        foodGenre: "American, Restaurant",
-        location: "1234 copycat lane",
-        phoneNumber: "0987654321",
-      },
-      {
-        id: 3,
-        title: "Burger 2",
-        rating: 4.5,
-        description: "A classic burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
-        numOfReviews: 1,
-        imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
-        foodGenre: "American, Restaurant",
-        location: "1234 dixie lane",
-        phoneNumber: "1234567890",
-      },
-      {
-        id: 4,
-        title: "Happy",
-        rating: 5,
-        description: "A different burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
-        numOfReviews: 0,
-        imgUrl: "https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg",
-        foodGenre: "American, Restaurant",
-        location: "1234 copycat lane",
-        phoneNumber: "0987654321",
-      },
-    ]
-  )
+  const [restaurants, setRestaurants] = useState([])
 
   const [findRestaurants, setFindRestaurants] = useState([])
 
