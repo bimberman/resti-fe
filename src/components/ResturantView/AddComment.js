@@ -18,35 +18,35 @@ function AddComment(props) {
     setRating(e.target.value)
   }
 
-  const handleSendClick = async (e) => {
+  const handleSendClick = (e) => {
     e.preventDefault();
     if (!props.currentUser.username) {
       alert("You need to be signed in to write a review!");
       return;
     }
-
-    try {
-      fetch(`http://host.docker.internal:5000/api/review/add`, {
-        "method": "POST",
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": JSON.stringify({
-            "comment": comment,
-            "creationDate": "2021-03-31T00:31:30.925Z",
-            "rating": rating,
+    props.setReviews([...props.reviews, {
+          "comment": comment,
+          "creationDate": "2021-03-31",
+          "rating": rating,
           "restaurantId": props.currentRestaurant.id,
           "userId": props.currentUser.id,
-            "username": props.currentUser.username
-        })
+          "username": props.currentUser.username
+        }]);
+
+    fetch(`http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/add/review`, {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": JSON.stringify({
+          "comment": comment,
+          "creationDate": "2021-03-31",
+          "rating": rating,
+        "restaurantId": props.currentRestaurant.id,
+        "userId": props.currentUser.id,
+          "username": props.currentUser.username
       })
-        .then(res => res.json())
-        .then(data => {
-          props.setReviews({ ...props.reviews, data });
-        })
-    } catch (err) {
-      console.error(err);
-    }
+    })
   }
 
   return (
