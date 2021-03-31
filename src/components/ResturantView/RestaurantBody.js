@@ -5,21 +5,13 @@ import AddComment from './AddComment';
 import { useState, useEffect } from "react";
 
 function RestaurantBody(props){
-    const [reviews, setReviews] = useState([]);
     
     const [rateNumber, setRateNumber] = useState(0);
     const [fullStars, setFullStars] = useState(0);
+    const [reviews, setReviews] = useState([props.reviews])
 
     useEffect(() => {
-        setReviews(()=>[]);
-        props.reviews.forEach(review => {
-            if (review.restaurantId === props.currentRestaurant.id) {
-                setReviews(prevState => ([
-                    ...prevState,
-                    review
-                ]))
-            }
-        })
+        setReviews(props.reviews.filter(review => review.restaurantId === props.currentRestaurant.id))
     }, [props.reviews, props.currentRestaurant])
     useEffect(
         () => {
@@ -93,6 +85,8 @@ function RestaurantBody(props){
         setFullStars(stars)
     }, [rateNumber])
 
+
+
     const removeComment = (id) => {
         if(props.currentUser.role==="admin"){
             props.setReviews(reviews.filter(review=>review.id!==id));
@@ -131,8 +125,9 @@ function RestaurantBody(props){
                         {
                             reviews.map(review => {
                                 return (
-                                    <div key={review.id}>
+                                    <div >
                                         <Comment
+                                            key={review.id}
                                             review={review}
                                             removeComment={removeComment}/>
                                     </div>
@@ -144,8 +139,7 @@ function RestaurantBody(props){
                             currentUser = {props.currentUser}
                             currentRestaurant={props.currentRestaurant}
                             reviews={props.reviews}
-                            idCounter={props.idCounter}
-                            setIdCounter={props.setIdCounter}/>
+                            setReviews={props.setReviews}/>
                     </div>
                 </div>
             </div>

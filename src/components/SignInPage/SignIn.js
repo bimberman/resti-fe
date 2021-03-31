@@ -33,15 +33,31 @@ function SignIn(props) {
         })
     }
 
-    const handleSubmitSignUp = (e) => {
+    const handleSubmitSignUp = async (e) => {
         e.preventDefault();
         if (pass === pass2) {
-            props.users.push({
-                username: username,
-                pass: pass
-            });
-            props.setCurrentUser({ username: username, pass: pass});
-            history.push("/");
+
+            try{
+                fetch(`http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com/api/add/user`, {
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": JSON.stringify({
+                        username: username,
+                        password: pass,
+                        role: "ROLE_USER"
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        props.setUsers({...props.users, data});
+                        props.setCurrentUser({ username: username, pass: pass });
+                    })
+                history.push("/");
+            } catch (err) {
+                console.error(err);
+            }
         }
     }
 
@@ -76,7 +92,7 @@ function SignIn(props) {
                                     <form className="sign-up-form" onSubmit={handleSubmitSignUp}>
                                         <div className="group"> <label htmlFor="user" className="label">Username</label> <input id="input-user2" type="text" className="input" placeholder="Create your Username" onChange={handleUserNameChange}></input> </div>
                                         <div className="group"> <label htmlFor="pass" className="label">Password</label> <input id="input-pass2" type="password" className="input" data-type="password" placeholder="Create your password" autoComplete="on" onChange={handlePassChange}></input> </div>
-                                        <div className="group"> <label htmlFor="pass" className="label">Repeat Password</label> <input id="input-pass3" type="password" className="input" data-type="password" placeholder="Repeat your password" autoComplete="on" onChange={handlePassSignUpVerificationChange}></input> </div>
+                                        <div className="group"> <label htmlFor="pass" className="label">Repeat Password</label> <input id="input-pass3" type="password" className="input" data-type="password" placeholder="Repeat your password" autoComplete="on" onChange={handlePassSignUpVerificationChange}></input></div>
                                         <div className="group">
                                         <input type="submit" className="button" value="Sign Up"></input> </div>
                                         <div className="hr"></div>

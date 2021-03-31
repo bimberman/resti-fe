@@ -10,83 +10,60 @@ import SignInPage from './components/SignInPage/SignInPage';
 
 function App() {
 
-  const BASE_URL = "http://jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com";
+  const [users, setUsers] = useState();
+  const [currentUser, setCurrentUser] = useState({})
+  const [restaurants, setRestaurants] = useState([])
+  const [findRestaurants, setFindRestaurants] = useState([])
+  const [currentRestaurant, setCurrentRestaurant] = useState({})
+  const [reviews, setReviews] = useState([])
+
+  const BASE_URL_RESTAURANT_SERVICE = "http://jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com";
+  const BASE_URL_USER_SERVICE = "http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com";
+  const BASE_URL_REVIEW_SERVICE = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com";
 
   useEffect(()=>{
-    fetchAllReviews();
+    fetchAllRestaurants();
     fetchAllUsers();
+    fetchAllReviews();
   },[])
 
-  const fetchAllReviews = async () => {
+  const fetchAllRestaurants = async () => {
     try {
-      fetch(`${BASE_URL}/api/restaurants/all`)
+      fetch(`${BASE_URL_RESTAURANT_SERVICE}/api/restaurants/all`)
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           setRestaurants(data);
         });
     } catch (err) {
       console.error("Getting error: " + err);
     }
   }
+
   const fetchAllUsers = async () => {
     try {
-      fetch("http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com/api/users")
+
+      fetch(`${BASE_URL_USER_SERVICE}/api/users`)
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           setUsers(data);
+          setCurrentUser(data[0]);
         });
     } catch (err) {
       console.error("Getting error: " + err);
     }
   }
 
-  const fetchPostReviews = async () => {
+  const fetchAllReviews = async () => {
     try {
-      fetch("http://jumpfinalprojectreviews-ehttp://www.brookvalepta.com/wp-content/uploads/2014/02/pf-changs.jpgnv.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/add/review",
-        {
-          method: "POST",
-          headers:{
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            "id": 2,
-            "comment": "string",
-            "creationDate": "2021-03-25",
-            "user_id": 2,
-            "restaurant_id": 3,
-            "rating": 4
-          })
-        })
+      fetch(`${BASE_URL_REVIEW_SERVICE}/api/reviews`)
+        .then(res => res.json())
+        .then(data => {
+          setReviews(data);
+        });
     } catch (err) {
       console.error("Getting error: " + err);
     }
   }
-  
-  const [users, setUsers] = useState([]);
-
-  const [currentUser, setCurrentUser] = useState({
-    // id: 1,
-    // username: "ten",
-    // pass: "pass",
-    // email: "something@email.com",
-    // role: "user"
-  })
-
-  const [idCounter, setIdCounter] = useState({
-    restaurants: 2,
-    users: 2,
-    reviews: 1
-  })
-
-  const [restaurants, setRestaurants] = useState([])
-
-  const [findRestaurants, setFindRestaurants] = useState([])
-
-  const [currentRestaurant, setCurrentRestaurant] = useState({})
-
-  const [reviews, setReviews] = useState([])
 
   const searchRestaurants = (str) => {
     if (str) {
@@ -119,8 +96,6 @@ function App() {
               partialSearchRestaurants={partialSearchRestaurants}
               setCurrentRestaurant={setCurrentRestaurant}
               currentUser={currentUser}
-              idCounter={idCounter}
-              setIdCounter={setIdCounter}
               setFindRestaurants={setFindRestaurants}/>
           </Route>
           <Route exact path='/Restaurant'>
@@ -129,8 +104,6 @@ function App() {
               currentUser={currentUser}
               reviews={reviews}
               setReviews={setReviews}
-              idCounter={idCounter}
-              setIdCounter={setIdCounter}
               />
           </Route>
           <Route exact path='/Login'>
@@ -138,9 +111,7 @@ function App() {
               setUsers={setUsers}
               users={users}
               setCurrentUser={setCurrentUser}
-              currentUser={currentUser}
-              idCounter={idCounter}
-              setIdCounter={setIdCounter}/>\
+              currentUser={currentUser}/>
           </Route>
         </Switch>
       </BrowserRouter>

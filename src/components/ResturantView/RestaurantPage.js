@@ -12,8 +12,7 @@ function RestaurantPage(props){
                 setReviews={props.setReviews}
                 currentRestaurant={props.currentRestaurant}
                 currentUser = {props.currentUser}
-                idCounter={props.idCounter}
-                setIdCounter={props.setIdCounter}/>
+                />
             <br></br>
             <br></br>
             <br></br>
