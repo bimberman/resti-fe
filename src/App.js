@@ -41,6 +41,7 @@ function App() {
 
   const fetchAllUsers = async () => {
     try {
+
       fetch(`${BASE_URL_USER_SERVICE}/api/users`)
         .then(res => res.json())
         .then(data => {

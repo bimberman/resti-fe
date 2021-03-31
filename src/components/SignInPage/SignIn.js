@@ -27,6 +27,7 @@ function SignIn(props) {
         matches.forEach(match => {
             if (match.password === pass){
                 props.setCurrentUser({ username: username, pass: pass});
+
                 history.push("/");
             }
         })
@@ -35,6 +36,7 @@ function SignIn(props) {
     const handleSubmitSignUp = async (e) => {
         e.preventDefault();
         if (pass === pass2) {
+
             try{
                 fetch(`http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com/api/add/user`, {
                     "method": "POST",

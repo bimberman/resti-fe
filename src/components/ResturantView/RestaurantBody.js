@@ -5,11 +5,85 @@ import AddComment from './AddComment';
 import { useState, useEffect } from "react";
 
 function RestaurantBody(props){
+    
+    const [rateNumber, setRateNumber] = useState(0);
+    const [fullStars, setFullStars] = useState(0);
     const [reviews, setReviews] = useState([props.reviews])
 
     useEffect(() => {
         setReviews(props.reviews.filter(review => review.restaurantId === props.currentRestaurant.id))
     }, [props.reviews, props.currentRestaurant])
+    useEffect(
+        () => {
+            setRateNumber(props.currentRestaurant.rating);
+               
+        },[props.currentRestaurant.rating]
+    )
+
+    useEffect(() =>{
+        let stars;
+
+        if(rateNumber === 1){
+        stars = (
+                        <span>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                        </span>
+                )
+        }
+        if(rateNumber === 2){
+            stars = (
+                        <div>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+
+                        </div>
+                    )
+            }
+        if(rateNumber === 3){
+            stars = (
+                        <span>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+
+                        </span>
+                    )
+            }
+        if(rateNumber === 3){
+            stars = (
+                        <span>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+
+                        </span>
+                    )
+            }
+        if(rateNumber === 4){
+            stars = (
+                        <span>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+
+                            </span>
+                    )
+            }
+        if(rateNumber === 5){
+            stars = (
+                        <span>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+
+                        </span>
+                    )
+            }
+        setFullStars(stars)
+    }, [rateNumber])
 
 
 
@@ -33,12 +107,9 @@ function RestaurantBody(props){
             <div className="card-body card-body-cascade text-center">
                 <h4 className="card-title"><strong>{props.currentRestaurant.title}</strong></h4>
                 <ul className="list-unstyled list-inline rating mb-0">
-                    <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"> </i></li>
-                    <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
-                    <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
-                    <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
-                    <li className="list-inline-item"><i className="fa fa-star-half-alt amber-text"></i></li>
-                    <li className="list-inline-item"><p className="text-muted">{props.currentRestaurant.rating} ({props.currentRestaurant.numOfRating})</p></li>
+                    {fullStars}
+                    &nbsp;
+                    <li className="list-inline-item"><p className="text-muted">({props.currentRestaurant.numOfRating})</p></li>
                 </ul>
                 <p className="card-text">{props.currentRestaurant.description}</p>
             </div>
