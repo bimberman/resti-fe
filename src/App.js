@@ -45,6 +45,7 @@ function App() {
         .then(res => res.json())
         .then(data => {
           setUsers(data);
+          setCurrentUser(data[0]);
         });
     } catch (err) {
       console.error("Getting error: " + err);

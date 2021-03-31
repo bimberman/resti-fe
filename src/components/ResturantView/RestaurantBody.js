@@ -8,16 +8,10 @@ function RestaurantBody(props){
     const [reviews, setReviews] = useState([props.reviews])
 
     useEffect(() => {
-        setReviews(()=>[]);
-        props.reviews.forEach(review => {
-            if (review.restaurantId === props.currentRestaurant.id) {
-                setReviews(prevState => ([
-                    ...prevState,
-                    review
-                ]))
-            }
-        })
+        setReviews(props.reviews.filter(review => review.restaurantId === props.currentRestaurant.id))
     }, [props.reviews, props.currentRestaurant])
+
+
 
     const removeComment = (id) => {
         if(props.currentUser.role==="admin"){
@@ -60,8 +54,9 @@ function RestaurantBody(props){
                         {
                             reviews.map(review => {
                                 return (
-                                    <div key={review.id}>
+                                    <div >
                                         <Comment
+                                            key={review.id}
                                             review={review}
                                             removeComment={removeComment}/>
                                     </div>
