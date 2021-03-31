@@ -31,7 +31,7 @@ function App() {
   }
   const fetchAllUsers = async () => {
     try {
-      fetch("http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com/")
+      fetch("http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com/api/users")
         .then(res => res.json())
         .then(data => {
           console.log(data);
@@ -63,25 +63,8 @@ function App() {
       console.error("Getting error: " + err);
     }
   }
-
-  const [users, setUsers] = useState(
-    [
-      {
-        id: 1,
-        username: "ten",
-        pass: "pass",
-        email: "something@email.com",
-        role: "user"
-      },
-      {
-        id: 2,
-        username: "root",
-        pass: "rootroot",
-        email: "something@email.com",
-        role: "admin"
-      }
-    ]
-  );
+  
+  const [users, setUsers] = useState([]);
 
   const [currentUser, setCurrentUser] = useState({
     // id: 1,
@@ -103,21 +86,7 @@ function App() {
 
   const [currentRestaurant, setCurrentRestaurant] = useState({})
 
-  const [reviews, setReviews] = useState(
-    [
-      {
-        id: 1,
-        restaurantId: 1,
-        rating: 4.5,
-        message: "A classic burger joint that serves up USDA choice beef on two hot and toasy buns. Come try our classic baconator.",
-        user: {
-          username: "ten",
-          role: "user",
-          userImg: "http://brunoclaessens.com/wp-content/uploads/2015/07/Darth-Vader-Mumuye-head.jpg"
-        }
-      }
-    ]
-  )
+  const [reviews, setReviews] = useState([])
 
   const searchRestaurants = (str) => {
     if (str) {

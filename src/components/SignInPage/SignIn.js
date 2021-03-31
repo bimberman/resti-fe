@@ -7,7 +7,6 @@ function SignIn(props) {
     const [username, setUsername] = useState(0);
     const [pass, setPass] = useState(0);
     const [pass2, setPass2] = useState(0);
-    const [email, setEmail] = useState(0);
     const history = useHistory();
 
     const handleUserNameChange = (e) => {
@@ -22,16 +21,13 @@ function SignIn(props) {
         setPass2(e.target.value);
     }
 
-    const handleEmailSignUpChange = (e) => {
-        setEmail(e.target.value);
-    }
-
     const handleSubmitSignIn = (e) => {
         e.preventDefault();
         const matches = props.users.filter(user=>user.username===username);
         matches.forEach(match => {
-            if (match.pass === pass){
+            if (match.password === pass){
                 props.setCurrentUser({ username: username, pass: pass});
+
                 history.push("/");
             }
         })
@@ -42,10 +38,9 @@ function SignIn(props) {
         if (pass === pass2) {
             props.users.push({
                 username: username,
-                pass: pass,
-                email: email
+                pass: pass
             });
-            props.setCurrentUser({ username: username, pass: pass, email: email });
+            props.setCurrentUser({ username: username, pass: pass});
             history.push("/");
         }
     }
@@ -82,7 +77,6 @@ function SignIn(props) {
                                         <div className="group"> <label htmlFor="user" className="label">Username</label> <input id="input-user2" type="text" className="input" placeholder="Create your Username" onChange={handleUserNameChange}></input> </div>
                                         <div className="group"> <label htmlFor="pass" className="label">Password</label> <input id="input-pass2" type="password" className="input" data-type="password" placeholder="Create your password" autoComplete="on" onChange={handlePassChange}></input> </div>
                                         <div className="group"> <label htmlFor="pass" className="label">Repeat Password</label> <input id="input-pass3" type="password" className="input" data-type="password" placeholder="Repeat your password" autoComplete="on" onChange={handlePassSignUpVerificationChange}></input> </div>
-                                        <div className="group"> <label htmlFor="pass" className="label">Email Address</label> <input id="input-pass4" type="text" className="input" placeholder="Enter your email address" autoComplete="on" onChange={handleEmailSignUpChange}></input> </div>
                                         <div className="group">
                                         <input type="submit" className="button" value="Sign Up"></input> </div>
                                         <div className="hr"></div>
