@@ -170,4 +170,6 @@
   .container .info span .fa {
     color: black;
   }
-  
+  .nopadding {
+    padding: 0 !important;
+ }

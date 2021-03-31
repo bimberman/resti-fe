@@ -5,7 +5,7 @@ import AddComment from './AddComment';
 import { useState, useEffect } from "react";
 
 function RestaurantBody(props){
-    const [reviews, setReviews] = useState([])
+    const [reviews, setReviews] = useState([props.reviews])
 
     useEffect(() => {
         setReviews(()=>[]);
@@ -30,7 +30,7 @@ function RestaurantBody(props){
             <div className="card card-cascade  reverse">
             <div className="view view-cascade overlay">
                 <br></br>
-                <img className="card-img-top" src={props.currentRestaurant.imgUrl}
+                <img className="card-img-top"  width= "500px" src={props.currentRestaurant.imgUrl}
                 alt="Card cap"></img>
                 <a href="#!">
                 <div className="mask rgba-white-slight"></div>
@@ -44,12 +44,12 @@ function RestaurantBody(props){
                     <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
                     <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
                     <li className="list-inline-item"><i className="fa fa-star-half-alt amber-text"></i></li>
-                    <li className="list-inline-item"><p className="text-muted">{props.currentRestaurant.rating} ({props.currentRestaurant.numOfReviews})</p></li>
+                    <li className="list-inline-item"><p className="text-muted">{props.currentRestaurant.rating} ({props.currentRestaurant.numOfRating})</p></li>
                 </ul>
                 <p className="card-text">{props.currentRestaurant.description}</p>
             </div>
-            <p className="ml-5">Phone Number: {props.currentRestaurant.phoneNumber}</p>
-            <p className="ml-5">Address: {props.currentRestaurant.location}</p>
+            <p className="ml-5">Phone Number: {props.currentRestaurant.phone}</p>
+            <p className="ml-5">Address: {props.currentRestaurant.address}</p>
             <br></br>
             </div>
             <div className="container mt-5">
@@ -73,8 +73,7 @@ function RestaurantBody(props){
                             currentUser = {props.currentUser}
                             currentRestaurant={props.currentRestaurant}
                             reviews={props.reviews}
-                            idCounter={props.idCounter}
-                            setIdCounter={props.setIdCounter}/>
+                            setReviews={props.setReviews}/>
                     </div>
                 </div>
             </div>
