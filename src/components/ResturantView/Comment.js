@@ -13,7 +13,7 @@ function Comment(props){
         <div className="card p-3 mt-2">
             <div className=" row ">
                 <div className="user col-1">
-                    <img src={props.review.userImg} width="50px" alt="user" className="user-img rounded-circle"></img>
+                    <img src="../../img/user-alt-512.webp" width="50px" alt="user" className="user-img rounded-circle"></img>
                     <small className="font-weight-bold text-primary d-flex align-items-center ml-3">{props.review.username}</small>
                 </div>
                 <div className="user col-9">

@@ -43,7 +43,7 @@ function SignIn(props) {
                     },
                     "body": JSON.stringify({
                         username: username,
-                        pass: pass,
+                        password: pass,
                         role: "ROLE_USER"
                     })
                 })
@@ -52,7 +52,7 @@ function SignIn(props) {
                         props.setUsers({...props.users, data});
                         props.setCurrentUser({ username: username, pass: pass });
                     })
-                    .then( result => history.push("/"));
+                history.push("/");
             } catch (err) {
                 console.error(err);
             }

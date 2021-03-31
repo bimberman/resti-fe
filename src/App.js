@@ -15,47 +15,16 @@ function App() {
   const [restaurants, setRestaurants] = useState([])
   const [findRestaurants, setFindRestaurants] = useState([])
   const [currentRestaurant, setCurrentRestaurant] = useState({})
-  const [reviews, setReviews] = useState([
-    {
-      "id": 1,
-      "comment": "string",
-      "creationDate": "2021-03-25",
-      "userId": 0,
-      "username": null,
-      "restaurantId": 0,
-      "rating": 0,
-      "imageUrl": null
-    },
-    {
-      "id": 2,
-      "comment": "string",
-      "creationDate": "2021-03-25",
-      "userId": 2,
-      "username": null,
-      "restaurantId": 3,
-      "rating": 4,
-      "imageUrl": null
-    },
-    {
-      "id": 3,
-      "comment": "string",
-      "creationDate": "2021-03-25",
-      "userId": 2,
-      "username": null,
-      "restaurantId": 3,
-      "rating": 4,
-      "imageUrl": null
-    }
-  ])
+  const [reviews, setReviews] = useState([])
 
   const BASE_URL_RESTAURANT_SERVICE = "http://jumprestaurantservice-env.eba-zehpzbtd.us-east-1.elasticbeanstalk.com";
   const BASE_URL_USER_SERVICE = "http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com";
-  const BASE_URL_REVIEW_SERVICE = "http://jumpfinalprojectusersservice-env.eba-jm5kjp4s.us-east-1.elasticbeanstalk.com";
+  const BASE_URL_REVIEW_SERVICE = "http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com";
 
   useEffect(()=>{
     fetchAllRestaurants();
     fetchAllUsers();
-    // fetchAllReviews();
+    fetchAllReviews();
   },[])
 
   const fetchAllRestaurants = async () => {
@@ -84,7 +53,7 @@ function App() {
 
   const fetchAllReviews = async () => {
     try {
-      fetch(`${BASE_URL_REVIEW_SERVICE}/api/reviews/all`)
+      fetch(`${BASE_URL_REVIEW_SERVICE}/api/reviews`)
         .then(res => res.json())
         .then(data => {
           setReviews(data);
