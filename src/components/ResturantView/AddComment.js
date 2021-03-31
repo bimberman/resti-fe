@@ -24,6 +24,10 @@ function AddComment(props) {
       alert("You need to be signed in to write a review!");
       return;
     }
+
+    setComment(null);
+    setRating(null);
+
     props.setReviews([...props.reviews, {
           "comment": comment,
           "creationDate": "2021-03-31",

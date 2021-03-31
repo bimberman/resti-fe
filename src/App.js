@@ -7,6 +7,7 @@ import {
 import HomePage from './components/HomePage/HomePage';
 import RestaurantPage from './components/ResturantView/RestaurantPage';
 import SignInPage from './components/SignInPage/SignInPage';
+import EditRestaurantView from './components/EditRestaurant/EditRestaurantView'
 
 function App() {
 
@@ -46,7 +47,6 @@ function App() {
         .then(res => res.json())
         .then(data => {
           setUsers(data);
-          setCurrentUser(data[0]);
         });
     } catch (err) {
       console.error("Getting error: " + err);
@@ -67,7 +67,7 @@ function App() {
 
   const searchRestaurants = (str) => {
     if (str) {
-      setFindRestaurants( restaurants.filter( restaurant=> str === restaurant.title ))
+      setFindRestaurants( restaurants.filter( restaurant=> str === restaurant.name ))
     }
 
     if(!str.length){
@@ -77,7 +77,7 @@ function App() {
 
   const partialSearchRestaurants = (str) => {
     if(str){
-      setFindRestaurants(restaurants.filter(restaurant => restaurant.title.toLowerCase().includes(str.toLowerCase()) ))
+      setFindRestaurants(restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(str.toLowerCase())))
     }
 
     if (!str.length) {
@@ -96,6 +96,7 @@ function App() {
               partialSearchRestaurants={partialSearchRestaurants}
               setCurrentRestaurant={setCurrentRestaurant}
               currentUser={currentUser}
+              reviews={reviews}
               setFindRestaurants={setFindRestaurants}/>
           </Route>
           <Route exact path='/Restaurant'>
@@ -112,6 +113,13 @@ function App() {
               users={users}
               setCurrentUser={setCurrentUser}
               currentUser={currentUser}/>
+          </Route>
+          <Route exact path='/EditRestaurant'>
+            <EditRestaurantView
+              currentRestaurant={currentRestaurant}
+              setCurrentRestaurant={setCurrentRestaurant}
+              setRestaurants={setRestaurants}
+              currentUser={currentUser} />
           </Route>
         </Switch>
       </BrowserRouter>

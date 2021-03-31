@@ -26,10 +26,12 @@ function HomePage(props) {
       <div className = "container">
         <div className = "row justify-content-center">
           {restaurants.map(restaurant => {
+            const numberOfReviews = props.reviews.filter(review => review.restaurantId === restaurant.id).length;
               return (
                 <Card
                   key={restaurant.id}
                   setFindRestaurants={props.setFindRestaurants}
+                  numberOfReviews={numberOfReviews}
                   restaurant={restaurant}
                   setCurrentRestaurant={props.setCurrentRestaurant}
                 />

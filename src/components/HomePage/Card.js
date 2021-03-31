@@ -12,21 +12,17 @@ function Card(props){
         props.setCurrentRestaurant(props.restaurant);
         props.setFindRestaurants([]);
     }
-    useEffect(
-        () => {
+    useEffect(() => {
             setRateNumber(props.restaurant.rating);
-               
-        },[props.restaurant.rating]
-    )
+        },[props.restaurant.rating])
 
     useEffect(() =>{
         let stars;
-
         if(rateNumber === 1){
         stars = (
-                        <span>
-                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
-                        </span>
+                    <span>
+                        <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
+                    </span>
                 )
         }
         if(rateNumber === 2){
@@ -36,16 +32,6 @@ function Card(props){
                             <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
 
                         </div>
-                    )
-            }
-        if(rateNumber === 3){
-            stars = (
-                        <span>
-                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
-                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
-                            <li className="list-inline-item mr-0"><i className="fa fa-star amber-text"></i></li>
-
-                        </span>
                     )
             }
         if(rateNumber === 3){
@@ -98,7 +84,7 @@ function Card(props){
                     <ul className="list-unstyled list-inline rating mb-0">
                         {fullStars}
                         &nbsp;
-                        <li className="list-inline-item"><p className="text-muted">({props.restaurant.numOfRating})</p></li>
+                        <li className="list-inline-item"><p className="text-muted">({props.numberOfReviews})</p></li>
                     </ul>
                     <p className="mb-2">$ • {props.restaurant.category}</p>
                     <p className="card-text">{props.restaurant.description}</p>
