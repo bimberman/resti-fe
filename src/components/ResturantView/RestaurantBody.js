@@ -3,9 +3,10 @@ import CommentHeader from './CommentHeader';
 import '../../css/CommentStyle.css';
 import AddComment from './AddComment';
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 function RestaurantBody(props){
-    
+
     const [rateNumber, setRateNumber] = useState(0);
     const [fullStars, setFullStars] = useState(0);
     const [reviews, setReviews] = useState([props.reviews])
@@ -16,7 +17,7 @@ function RestaurantBody(props){
     useEffect(
         () => {
             setRateNumber(props.currentRestaurant.rating);
-               
+
         },[props.currentRestaurant.rating]
     )
 
@@ -85,12 +86,17 @@ function RestaurantBody(props){
         setFullStars(stars)
     }, [rateNumber])
 
+    const numberOfReviews = props.reviews.filter(review => review.restaurantId === props.currentRestaurant.id).length;
 
-
-    const removeComment = (id) => {
-        if(props.currentUser.role==="admin"){
-            props.setReviews(reviews.filter(review=>review.id!==id));
+    const removeComment = (commentId) => {
+        if (!props.currentUser || props.currentUser.role !== "ROLE_ADMIN") {
+            alert("You need to be logged in as an admin to delete a comment!");
+            return;
         }
+        fetch(`http://jumpfinalprojectreviews-env.eba-5yianuah.us-east-1.elasticbeanstalk.com/api/delete/review/${commentId}`, {
+            "method": "DELETE"
+        });
+        props.setReviews(reviews.filter(review => review.id !== commentId));
     }
 
     return(
@@ -100,21 +106,26 @@ function RestaurantBody(props){
                 <br></br>
                 <img className="card-img-top"  width= "500px" src={props.currentRestaurant.imgUrl}
                 alt="Card cap"></img>
-                <a href="#!">
                 <div className="mask rgba-white-slight"></div>
-                </a>
             </div>
             <div className="card-body card-body-cascade text-center">
-                <h4 className="card-title"><strong>{props.currentRestaurant.title}</strong></h4>
+                    <h4 className="card-title"><strong>{props.currentRestaurant.name}</strong></h4>
                 <ul className="list-unstyled list-inline rating mb-0">
                     {fullStars}
                     &nbsp;
-                    <li className="list-inline-item"><p className="text-muted">({props.currentRestaurant.numOfRating})</p></li>
+                    <li className="list-inline-item"><p className="text-muted">({numberOfReviews})</p></li>
                 </ul>
                 <p className="card-text">{props.currentRestaurant.description}</p>
             </div>
             <p className="ml-5">Phone Number: {props.currentRestaurant.phone}</p>
             <p className="ml-5">Address: {props.currentRestaurant.address}</p>
+            {props.currentUser.role === "ROLE_ADMIN"
+                ? <Link
+                        className="btn btn-primary mx-0 mb-0"
+                        to={'/EditRestaurant'}>
+                        Edit
+                  </Link>
+                : null}
             <br></br>
             </div>
             <div className="container mt-5">

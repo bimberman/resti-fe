@@ -26,7 +26,7 @@ function SignIn(props) {
         const matches = props.users.filter(user=>user.username===username);
         matches.forEach(match => {
             if (match.password === pass){
-                props.setCurrentUser({ username: username, pass: pass});
+                props.setCurrentUser(match);
 
                 history.push("/");
             }
